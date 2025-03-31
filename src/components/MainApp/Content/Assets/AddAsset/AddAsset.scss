@@ -1,0 +1,70 @@
+.addAsset__wrapper{
+    height: 0px;
+    transition: height 0.25s ease;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.animated{
+    height: 880px;
+}
+.addAsset__buttonBar{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+.addAsset__buttonBar--closeButton{
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    border: none;
+    padding: 10px;
+    background-color: rgb(248, 115, 115)
+}
+.assets__form{
+    display: flex;
+    flex-direction: column;
+}
+.form-group{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.form-group > label{
+    width: 200px;
+    font-weight: 600;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+}
+.form-group > input, select{
+    border: none;
+    outline: none;
+    background: none;
+    width: 400px;
+    height: 40px;
+    border: 1px solid lightgray;
+    padding: 2px;
+    box-sizing: border-box;
+
+}
+.form-group > input::placeholder{
+    color: lightgray;
+}
+.assets__form > button{
+    background-color: rgb(129, 151, 173);
+    color: white;
+    font-size: 14px;
+    padding: 7px;
+    border: none;
+}
+.submitted-data{
+    height: 50px;
+}

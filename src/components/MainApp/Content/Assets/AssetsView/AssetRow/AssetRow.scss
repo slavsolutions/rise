@@ -1,0 +1,43 @@
+.assetRow__rowWrapperx{
+    display: grid;
+    grid-template-columns: 60px 100px 80px 80px 110px 80px 80px 70px 80px 100px minmax(60px , auto)  80px 80px 80px;
+    grid-gap: 2px;
+    width: 100%;
+     &:first-of-type{
+        font-weight: 600;
+    }
+}
+.assetRow__rowWrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); /* Równe szerokości dla wszystkich kolumn */
+    grid-gap: 2px;
+    width: 100%; /* Tabela dostosowuje się do szerokości rodzica */
+    box-sizing: border-box; /* Zapewnia poprawne liczenie szerokości z paddingiem */
+  }
+  
+  .assetRow__rowWrapper:first-of-type {
+    font-weight: 600; /* Wyróżnienie pierwszego wiersza */
+  }
+  
+.assetRow__rowWrapper:nth-child(even) {
+    background-color: #e8f1f6;
+}
+.assetRow__column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    height: 50px;
+    text-overflow: ellipsis;
+    border: 1px solid rgb(228, 228, 228);
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.assetRow__column > span {
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}

@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik+Wet+Paint&display=swap');
+.header__wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: -webkit-fill-available;
+    height: 52px;
+    background-color: rgb(110, 136, 194);
+    color: white;
+    align-items: center;
+}
+.header__logo__wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Rubik Wet Paint", system-ui;
+    font-weight: 200;
+    font-style: normal;
+}
+
+
+.header__username{
+    margin-right: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+.auth0__username{
+    font-weight: 600;
+}
+.username__arrowdown{
+    margin-left: 5px;
+    width: 0px;
+    height: 0px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgb(255, 255, 255);
+}

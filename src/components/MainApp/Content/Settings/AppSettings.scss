@@ -1,0 +1,65 @@
+.AppSettings__wrapper{
+    margin: 10px;
+    height: 100vh
+}
+.AppSettings__section{
+    height: 20px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.AppSettings__general-title{
+    height: 25px;
+    background-color: lightgray;
+    padding-left: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.field-modification{
+    margin-top: 10px;
+    margin-left: 10px;
+    span{
+        font-size: 18px;
+    }
+}
+.asset__categories {
+    margin-top: 5px;
+    margin-left: 10px;
+    width: 200px;
+}
+
+.asset__categories div {
+    border: 1px solid lightgray;
+    border-bottom: none; /* Usunięcie dolnego borderu dla wszystkich */
+}
+
+/* Ostatni element ma pełne obramowanie */
+.asset__categories div:last-child {
+    border-bottom: 1px solid lightgray;
+}
+.category-item {
+    display: flex;
+    justify-content: space-between; /* Rozstawia elementy na boki */
+    align-items: center; /* Wyrównuje pionowo */
+    border: 1px solid lightgray;
+    padding: 2px;
+    height: 20px;
+}
+@keyframes pulseColor {
+    0% { color: rgb(63, 63, 63); }
+    50% { color: rgb(36, 241, 0); }
+    100% { color: rgb(63, 63, 63); }
+  }
+  
+  .category-item input {
+    border: none;
+    margin: 0;
+    padding: 0;
+    height: 18px;
+    width: 170px;
+    font-size: 18px;
+    color: rgb(63, 63, 63);
+    animation: pulseColor 1s infinite;
+  }
+  .category-item__icon{
+    cursor: pointer;
+  }

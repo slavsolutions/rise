@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.menu-item{
+    color: rgb(230, 245, 251);
+    cursor: pointer;
+    height: 50px;
+    padding: 12px;
+    font-weight: 400;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+.menu-item-active{
+    color: white;
+    font-weight: 600;
+    background-color: rgb(60,70,94);
+}
+.menu-item:hover{
+    background-color: rgb(60,70,94);
+}
+.menu-item-icon {
+    margin-left: 3px;
+    margin-right: 10px;
+    font-size: 20px; // Rozmiar ikony
+}
+.menu-item-title {
+    font-size: 16px;
+    color: inherit;
+    opacity: 0; /* Ukryj tekst, gdy sidebar nie jest rozszerzony */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Płynna animacja */
+    visibility: hidden; /* Ukryj tekst, aby nie był klikalny */
+}
+
+.sidebar-extended .menu-item-title {
+    opacity: 1; /* Pokaż tekst, gdy sidebar jest rozszerzony */
+    visibility: visible; /* Upewnij się, że tekst jest widoczny */
+}
+
+  
