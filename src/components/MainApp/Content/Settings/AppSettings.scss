@@ -1,9 +1,8 @@
 .AppSettings__wrapper{
-    margin: 10px;
-    height: 100vh
+    min-height: 100%;
+    overflow-y: scroll;
 }
 .AppSettings__section{
-    height: 20px;
     width: 100%;
     margin-bottom: 10px;
 }
@@ -21,10 +20,10 @@
         font-size: 18px;
     }
 }
-.asset__categories {
+.assets-box {
     margin-top: 5px;
     margin-left: 10px;
-    width: 200px;
+    width: 250px;
 }
 
 .asset__categories div {
@@ -62,4 +61,22 @@
   }
   .category-item__icon{
     cursor: pointer;
+  }
+  .settings-dropdown{
+    border: none;
+  }
+  .appSettings-spacer{
+    height: 25px;
+  }
+  .settings-dropdown-settings{
+    height: 20px;
+    margin: 0;
+  }
+  .settings-dropdown-settings{
+    width: 100%;
+    border: none;
+  }
+  .preview{
+    color: gray;
+    min-height: 20px;
   }

@@ -12,17 +12,15 @@ const axiosRequests = {
       }
     })
     .then(response => {
-      console.log(response.data);
-      console.log('xxx');
       store.dispatch({
-        type: 'UPDATE_DATA_FROM_SERVER',
+        type: 'UPDATE_ASSETLIST_FROM_SERVER',
         payload: response.data
       })
     })
     .catch(error => console.error('GET error:', error));
   },
 
-  addAsset: (data) => {
+  addAssetCategory: (data) => {
     console.log('axios post request ',data)
     axios.post(`${API_BASE_URL}/addAssetType`, data, {
       withCredentials: false,
@@ -30,9 +28,103 @@ const axiosRequests = {
         'Content-Type': 'application/json'
       }
     })
-    .then(response => console.log(response.data))
+    .then(response => axiosRequests.getAssetTypes())
     .catch(error => console.error('POST error:', error));
-  }
+  },
+
+  deleteAssetType: (data) => {
+    console.log(data._id);
+    axios.post(`${API_BASE_URL}/delAssetType`, {
+      payload: data._id,
+      withCredentials: false,
+    })
+    .then(response => axiosRequests.getAssetTypes())
+    .catch(error => console.error('POST error:', error));
+  },
+  getAssetModels: () => {
+    axios.post(`${API_BASE_URL}/getData`, {
+      requestType: 'getModelList'
+    })
+    .then(response => {
+      console.log('Downloading models successful')
+      store.dispatch({
+        type: 'UPDATE_MODELLIST_FROM_SERVER',
+        payload: response.data
+      })
+    })
+    .catch(error => console.error('post error:', error));
+  },
+  deleteAssetModel: (data) => {
+    console.log(data)
+    axios.post(`${API_BASE_URL}/getData`, {
+      requestType: 'deleteModel',
+      modelToDelete: data
+    })
+    .then(response => {
+      console.log(response.data)
+
+    })
+    .catch(error => console.error('post error:', error));
+  },
+  getAssetBrandList: () => {
+    axios.post(`${API_BASE_URL}/getData`, {
+      requestType: 'getAssetBrandList'
+    })
+    .then(response => {
+      store.dispatch({
+        type: 'DATA_UPDATE',
+        data: 'assetBrands',
+        payload: response.data,
+      })
+
+    })
+    .catch(error => console.error('post error:', error));
+  },
+  addAssetBrand: (data) => {
+    axios.post(`${API_BASE_URL}/getData`, {
+      requestType: 'addAssetBrand',
+      brand: data.assetBrand
+    })
+    .then(response => {
+      axiosRequests.getAssetBrandList()
+    })
+    .catch(error => console.error('post error:', error));
+  },
+  deleteAssetBrand: (data) => {
+    axios.post(`${API_BASE_URL}/getData`, {
+      requestType: 'deleteAssetBrand',
+      brand: data
+    })
+    .then(response => {
+      console.log(response.data.message._id === data ? 'Asset brand deleted successfully!' : 'Unexpected error occured')
+      axiosRequests.getAssetBrandList()
+    })
+    .catch(error => {
+      setTimeout(()=>{
+        window.location.reload();
+        }, 500)
+      alert('Unexpected error - reloading webiste')
+    })
+  },
+  addModel: (data) => {
+    console.log('ssssss', data)
+    axios.post(`${API_BASE_URL}/getData`, {
+      requestType: 'addModel',
+      model: data
+    })
+    .then(response => {
+      console.log(response.data.action.name , 'aaa', data.model)
+      console.log(response.data.action.name === data.model ? 'New model added successfully!' : 'Unexpected error occured')
+      axiosRequests.getAssetModels()
+    })
+    .catch(error => {
+      console.log('aaaasdasfsafsf', error)
+      setTimeout(()=>{
+        window.location.reload();
+        }, 50000)
+      alert('Unexpected error - reloading webiste')
+    })
+  },
 };
 
 export default axiosRequests;

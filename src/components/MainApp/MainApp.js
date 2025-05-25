@@ -7,12 +7,14 @@ import Header from './Content/Header/Header';
 import Assets from './Content/Assets/AssetsView/AssetsView';
 import Dashboard from './Content/Dashboard/Dashboard';
 import Footer from './Content/Footer/Footer';
-import AppSettings from './Content/Settings/AppSettings'
+import AppSettings from './Content/Settings/AppSettings';
+import Users from './Content/Users/Users';
 
 const viewComponents = {
-  Assets: Assets,
-  Dashboard: Dashboard,
-  AppSettings: AppSettings,
+  Assets,
+  Dashboard,
+  AppSettings,
+  Users
   // Dodaj tutaj inne komponenty widoków
 };
 

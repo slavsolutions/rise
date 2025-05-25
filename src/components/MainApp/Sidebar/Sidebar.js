@@ -8,6 +8,8 @@ import { IoHomeOutline } from "react-icons/io5";
 import { FaListUl } from "react-icons/fa6";
 import { FiSidebar } from "react-icons/fi";
 import { IoSettingsOutline } from "react-icons/io5";
+import { FaUser } from "react-icons/fa";
+import Users from '../Content/Users/Users';
 
 const Sidebar = ({changeView}) => {
   const [isSidebarExtended, setIsSidebarExtened] = useState(false)
@@ -15,10 +17,12 @@ const Sidebar = ({changeView}) => {
   const viewComponents = {
       Dashboard, 
       Assets,
+      Users,
       AppSettings}
   const menuIcons = {
       Dashboard: <IoHomeOutline />,
       Assets: <FaListUl />,
+      Users: <FaUser />,
       AppSettings: <IoSettingsOutline />
   }
   const menuitems = Object.keys(viewComponents)

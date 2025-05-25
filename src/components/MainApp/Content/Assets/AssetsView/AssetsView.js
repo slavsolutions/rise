@@ -10,7 +10,7 @@ function AssetsView() {
   const getAllAssets = () =>{
     axios({
       method: 'get',
-      url: 'https://socialback.bieda.it/app/listAssets',
+      url: 'https://socialback.bieda.it/listAssets',
       withCredentials: false,
     })
     .then(function (response){

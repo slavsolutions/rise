@@ -1,24 +1,30 @@
 const initialState = {
     tasks: [],
     assetTypes: [],
+    models: [],
+    assetBrands: [],
     activeSidebarButton: "Dashboard",
     activeTab: 'Dashboard'
   };
   
   const taskReducer = (state = initialState, action) => {
     switch (action.type) {
-      case 'UPDATE_DATA_FROM_SERVER':
-        console.log('redux', action.payload)
+      case 'UPDATE_ASSETLIST_FROM_SERVER':
         return{
           ...state,
           assetTypes: action.payload
         }
 
-
-      case 'ADD_TASK':
+      case 'UPDATE_MODELLIST_FROM_SERVER':
         return {
           ...state,
-          tasks: [...state.tasks, action.payload]
+          models: action.payload
+        };
+
+        case 'DATA_UPDATE':
+        return {
+          ...state,
+          [action.data]: action.payload
         };
 
       case 'DELETE_TASK':

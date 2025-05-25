@@ -16,8 +16,8 @@ const clientid = process.env.REACT_APP_AUTH0_CLIENTID
 
 
 
-console.log(domain, clientid)
-console.log('uwaga url ', window.location.origin+"/main")
+//console.log(domain, clientid)
+//console.log('uwaga url ', window.location.origin+"/main")
 
 root.render(
   <React.StrictMode>

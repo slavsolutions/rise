@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './AddAsset.scss'
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 
 const AddAsset = ({toggleFn}) => {
+  const assetTypes = useSelector((state) => state.assetTypes);
+  const assetModel = useSelector((state) => state.models)
   const [isAnimated, setIsAnimated] = useState(false);
   useEffect(() => {
+    console.log(assetModel)
     const timeout = setTimeout(() => setIsAnimated(true), 10); // Opóźnienie dodania klasy
     return () => clearTimeout(timeout); // Czyszczenie, gdyby komponent został odmontowany
   }, []);
@@ -42,7 +46,7 @@ const AddAsset = ({toggleFn}) => {
         console.log(formData);
         axios({
           method: 'post',
-          url: 'https://socialback.bieda.it/app/createAsset',
+          url: 'https://socialback.bieda.it/createAsset',
           withCredentials: false,
           data: formData,
           headers: {
@@ -66,8 +70,9 @@ const AddAsset = ({toggleFn}) => {
       </div>
       <form onSubmit={handleSubmit} className='assets__form'>
         <div className='form-group'>
+
           <label>Status</label>
-          <select id="select-form" name="status" alue={formData.status} onChange={handleChange} >
+          <select id="select-form" name="status" value={formData.status} onChange={handleChange} >
             <option value="" disabled selected hidden>select status</option>
             <option value="In Use">In use</option>
             <option value="In storage">In storage</option>
@@ -75,17 +80,32 @@ const AddAsset = ({toggleFn}) => {
             <option value="On lease">On lease</option>
           </select>
         </div>
+
         <div className='form-group'>
           <label>Serial number</label>
           <input type="text" name="serialNumber" placeholder='serial number' value={formData.serialNumber} onChange={handleChange} />
         </div>
         <div className='form-group'>
+
           <label>Category</label>
-          <input type="text" name="category" placeholder='choose category' value={formData.category} onChange={handleChange} />
+          <select id="category-select" name="category" placeholder='choose category' value={formData.category} onChange={handleChange}>
+            <option value="" disabled selected hidden>select category</option>
+            {assetTypes.map((x)=>
+            <option value={x.name}>{x.name}</option>
+            )}
+          </select>
+
         </div>
+
+
         <div className='form-group'>
           <label>Model</label>
-          <input type="text" name="model" placeholder='model' value={formData.model} onChange={handleChange} />
+          <select id="select-form" name="status" onChange={handleChange} >
+            <option value="" disabled selected hidden>select status</option>
+            {assetModel.map((x)=>
+            <option value={x._id}>{`${x.category} - ${x.brand} - ${x.name}`}</option>
+            )}
+          </select>
         </div>
         <div className='form-group'>
           <label>Assigned to user</label>

@@ -44,7 +44,7 @@
     align-items: center;
     justify-content: right;
 }
-.form-group > input, select{
+.form-group {input, select{
     border: none;
     outline: none;
     background: none;
@@ -54,7 +54,7 @@
     padding: 2px;
     box-sizing: border-box;
 
-}
+}}
 .form-group > input::placeholder{
     color: lightgray;
 }

@@ -4,10 +4,15 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
+
 }
 .main_content{
     display: flex;
     flex-direction: column;
     width: 100%;
-
+}
+.dynamic_changed_content{
+    height: 100%;
+    margin: 10px;
+    overflow-y: scroll;
 }
