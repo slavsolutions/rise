@@ -3,6 +3,7 @@ const initialState = {
     assetTypes: [],
     models: [],
     assetBrands: [],
+    usersList: [],
     activeSidebarButton: "Dashboard",
     activeTab: 'Dashboard'
   };
@@ -22,6 +23,7 @@ const initialState = {
         };
 
         case 'DATA_UPDATE':
+          console.log('robie update', action)
         return {
           ...state,
           [action.data]: action.payload

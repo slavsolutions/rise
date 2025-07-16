@@ -6,10 +6,12 @@ import { useSelector } from 'react-redux';
 
 const AddAsset = ({toggleFn}) => {
   const assetTypes = useSelector((state) => state.assetTypes);
-  const assetModel = useSelector((state) => state.models)
+  const assetModel = useSelector((state) => state.models);
+  const assetUsers = useSelector((state) => state.usersList)
   const [isAnimated, setIsAnimated] = useState(false);
   useEffect(() => {
     console.log(assetModel)
+    console.log('uwaaagaaaaa', assetUsers)
     const timeout = setTimeout(() => setIsAnimated(true), 10); // Opóźnienie dodania klasy
     return () => clearTimeout(timeout); // Czyszczenie, gdyby komponent został odmontowany
   }, []);
@@ -101,7 +103,7 @@ const AddAsset = ({toggleFn}) => {
         <div className='form-group'>
           <label>Model</label>
           <select id="select-form" name="status" onChange={handleChange} >
-            <option value="" disabled selected hidden>select status</option>
+            <option value="" disabled selected hidden>select model</option>
             {assetModel.map((x)=>
             <option value={x._id}>{`${x.category} - ${x.brand} - ${x.name}`}</option>
             )}
@@ -109,7 +111,12 @@ const AddAsset = ({toggleFn}) => {
         </div>
         <div className='form-group'>
           <label>Assigned to user</label>
-          <input type="text" name="assignedToUser" placeholder='user' value={formData.assignedToUser} onChange={handleChange} />
+          <select id='select-form' name='assignedToUser' onChange={handleChange}>
+            <option value="" disabled selected hidden>select user</option>
+            {assetUsers.map((x)=>
+            <option value={x.email}>{x.email}</option>
+            )}
+          </select>
         </div>
         <div className='form-group'>
           <label>Department</label>
@@ -118,10 +125,6 @@ const AddAsset = ({toggleFn}) => {
         <div className='form-group'>
           <label>Location</label>
           <input type="text" name="location" placeholder='location' value={formData.location} onChange={handleChange} />
-        </div>
-        <div className='form-group'>
-          <label>Brand</label>
-          <input type="text" name="brand" placeholder='brand' value={formData.brand} onChange={handleChange} />
         </div>
         <div className='form-group'>
           <label>Customer</label>
@@ -148,3 +151,4 @@ const AddAsset = ({toggleFn}) => {
 }
 
 export default AddAsset
+
