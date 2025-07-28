@@ -3,7 +3,7 @@ import './AppSettings.scss'
 import { IoMdArrowDropdown } from "react-icons/io";
 import { FaCircleMinus } from "react-icons/fa6";
 import { FaCirclePlus } from "react-icons/fa6";
-import axiosRequests from '../../../../functions/axios-requests/assets';
+import axiosRequests from '../../../../functions/axios-requests/requests';
 import { useSelector } from 'react-redux';
 
 const Settings = () => {
@@ -52,7 +52,7 @@ const Settings = () => {
   },[formData])
   return (
     <div className='AppSettings__wrapper'>
-
+      <button onClick={axiosRequests.getAssetTypes}></button>
     <section className='AppSettings__assetsSettings AppSettings__section'>
         <div className='AppSettings__general-title'>General settings <IoMdArrowDropdown className='asd'/></div>
         <div className='AppSettings__settingsList'>
