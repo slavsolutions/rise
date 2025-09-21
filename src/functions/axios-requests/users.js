@@ -30,12 +30,10 @@ const axiosRequestsUsers = {
           console.log('adding user error', error)
         })},
     getUsersList: () => {
-        console.log('getting users list')
         axios.post(`${API_BASE_URL}/users`, {
           requestType: 'getUsersList'
         })
         .then(response => {
-          console.log(response.data);
           store.dispatch({
             type: 'DATA_UPDATE',
             data: 'usersList',

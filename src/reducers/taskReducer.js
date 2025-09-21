@@ -1,46 +1,30 @@
+import {produce} from "immer";
+
 const initialState = {
-    tasks: [],
-    assetTypes: [],
-    models: [],
-    assetBrands: [],
-    usersList: [],
-    activeSidebarButton: "Dashboard",
-    activeTab: 'Dashboard'
-  };
-  
-  const taskReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case 'UPDATE_ASSETLIST_FROM_SERVER':
-        return{
-          ...state,
-          assetTypes: action.payload
-        }
+  jwt: null,
+  tasks: [],
+  assetTypes: [],
+  models: [],
+  assetBrands: [],
+  usersList: [],
+  activeSidebarButton: "Dashboard",
+  activeTab: 'Dashboard'
+};
 
-      case 'UPDATE_MODELLIST_FROM_SERVER':
-        return {
-          ...state,
-          models: action.payload
-        };
+const taskReducer = produce((draft, action) => {
+  switch (action.type) {
+    case 'DATA_UPDATE':
+      //console.log('data update: ', action.data, action.payload)
+      draft[action.data] = action.payload;
+      break;
 
-        case 'DATA_UPDATE':
-          console.log('robie update', action)
-        return {
-          ...state,
-          [action.data]: action.payload
-        };
+    case 'DELETE_TASK':
+      draft.tasks = draft.tasks.filter(task => task.id !== action.payload);
+      break;
 
-      case 'DELETE_TASK':
-        return {
-          ...state,
-          tasks: state.tasks.filter(task => task.id !== action.payload)
-        };
-        
-      default:
-        return state;
+    default:
+      break;
+  }
+}, initialState);
 
-
-
-    }
-  };
-  
-  export default taskReducer;
+export default taskReducer;

@@ -9,6 +9,10 @@ import Dashboard from './Content/Dashboard/Dashboard';
 import Footer from './Content/Footer/Footer';
 import AppSettings from './Content/Settings/AppSettings';
 import Users from './Content/Users/Users';
+import axiosRequests from '../../functions/axios-requests/assets';
+import axiosRequestsUsers from "../../functions/axios-requests/users";
+
+
 
 const viewComponents = {
   Assets,
@@ -19,6 +23,14 @@ const viewComponents = {
 };
 
 const MainApp = () => {
+
+  useEffect(() => {
+    axiosRequests.getAssetTypes()
+    axiosRequests.getAssetBrandList()
+    axiosRequests.getAssetModels()
+    axiosRequestsUsers.getUsersList()
+  }, []);
+
   const {isAuthenticated} = useAuth0();
   const navigate = useNavigate();
   const [currentView, setCurrentView] = useState(<Dashboard />);

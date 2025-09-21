@@ -3,26 +3,42 @@ import store from '../../store';  // importujemy instancję store'a
 
 const API_BASE_URL = 'https://socialback.bieda.it';
 
+const setupInterceptors = store => {
+  axios.interceptors.request.use(config => {
+    const token = store.getState().jwt;
+     if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return config;
+  });
+};
+
+setupInterceptors(store);
+
 const axiosRequests = {
-  getAssetTypes: () => {
-    axios.get(`${API_BASE_URL}/getAssetTypes`, {
-      withCredentials: false,
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    getAssetTypes: () => {
+    axios.post(`${API_BASE_URL}/api/assetType`, {
+      requestType: 'getList',
+      userData: {} // zgodnie z tym, czego oczekuje backend
+    }, {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: false
     })
     .then(response => {
       store.dispatch({
-        type: 'UPDATE_ASSETLIST_FROM_SERVER',
-        payload: response.data
-      })
+        type: 'DATA_UPDATE',
+        data: 'assetTypes',
+        payload: response.data,
+      });
     })
-    .catch(error => console.error('GET error:', error));
+    .catch(error => console.error('POST error:', error));
   },
-
+  
   addAssetCategory: (data) => {
-    console.log('axios post request ',data)
-    axios.post(`${API_BASE_URL}/addAssetType`, data, {
+    axios.post(`${API_BASE_URL}/api/assetType`, {
+      requestType: 'add',
+      userData: data
+    },{
       withCredentials: false,
       headers: {
         'Content-Type': 'application/json'
@@ -46,16 +62,15 @@ const axiosRequests = {
       requestType: 'getModelList'
     })
     .then(response => {
-      console.log('Downloading models successful')
       store.dispatch({
-        type: 'UPDATE_MODELLIST_FROM_SERVER',
-        payload: response.data
+        type: 'DATA_UPDATE',
+        data: 'models',
+        payload: response.data,
       })
     })
     .catch(error => console.error('post error:', error));
   },
   deleteAssetModel: (data) => {
-    console.log(data)
     axios.post(`${API_BASE_URL}/getData`, {
       requestType: 'deleteModel',
       modelToDelete: data
@@ -126,5 +141,6 @@ const axiosRequests = {
     })
   },
 };
+//axiosRequests.getNewAssetTypes();
 
 export default axiosRequests;
